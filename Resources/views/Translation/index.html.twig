@@ -1,0 +1,49 @@
+{% extends layout %}
+
+{% block translations_content %}
+
+    <h1>{{ 'translations' | trans }}</h1>
+
+    <nav>
+        <ul>
+            {% for domain in domains %}
+                <li>
+                    <a href="#section-{{ domain }}">{{ ('translations_' ~ domain) | trans }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+
+    <form method="post" action="{{ path('astina_translations_update') }}">
+
+        {% for domain in domains %}
+
+            <h2 id="section-{{ domain }}">{{ ('translations_' ~ domain) | trans }}</h2>
+
+            <table class="table">
+                <tr>
+                    <th>Key</th>
+                    {% for locale in locales %}
+                        <th>{{ locale }}</th>
+                    {% endfor %}
+                </tr>
+                {% for key,trans in messages[domain] %}
+                    <tr>
+                        <td><code>{{ key }}</code></td>
+                        {% for locale in locales %}
+                            {% set value = (trans[locale] is defined ? trans[locale] : '') %}
+                            <td>
+                                <input type="text" name="trans[{{ domain }}][{{ key }}][{{ locale }}]" value="{{ value }}" />
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+
+        {% endfor %}
+
+        <button type="submit">Save</button>
+
+    </form>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{
+    "name": "astina/translation-bundle",
+    "description": "DoctrineLoader to store translations in the database plus simple admin UI to edit translation messages.",
+    "license": "MIT",
+    "keywords": ["translations", "database", "doctrine"],
+    "type": "symfony-bundle",
+    "homepage": "http://astina.ch",
+    "authors": [
+        {
+            "name": "Astina AG",
+            "email": "admin@astina.ch"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "symfony/symfony": "~2.3",
+        "doctrine/orm": "~2.0"
+    },
+    "autoload": {
+        "psr-0": { "Astina\\Bundle\\TranslationBundle": "" }
+    },
+    "target-dir": "Astina/Bundle/TranslationBundle"
+}

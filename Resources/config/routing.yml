@@ -1,0 +1,7 @@
+astina_translations:
+    path:  /
+    defaults: { _controller: AstinaTranslationBundle:Translation:index }
+
+astina_translations_update:
+    path: /update
+    defaults: { _controller: AstinaTranslationBundle:Translation:update }
