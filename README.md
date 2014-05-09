@@ -64,3 +64,11 @@ $repo->set('messages', 'foo', 'fr', 'foux');
 **Note**: after adding/changing translations, the cache needs to be cleared.
 
 If you have added the routing config, you can access `/admin/translations` to edit messages stored in the database. The cache is automatically cleared after saving.
+
+#### Dumping Translations
+
+You can dump all stored translations to PHP array or JSON string by using the dump command:
+
+```
+php app/console astina:translation:dump
+```
