@@ -5,6 +5,15 @@
     <h1>{{ 'translations' | trans }}</h1>
 
     <nav>
+        {% if filters %}
+        <ul>
+            {% for filter in filters %}
+                <li>
+                    <a href="?filter={{ filter.name }}">{{ ('translations_' ~ filter.name) | trans }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+        {% else %}
         <ul>
             {% for domain in domains %}
                 <li>
@@ -12,13 +21,16 @@
                 </li>
             {% endfor %}
         </ul>
+        {% endif %}
     </nav>
 
     <form method="post" action="{{ path('astina_translations_update') }}">
-
-        {% for domain in domains %}
-
+        {% for domain,data in messages %}
+            {% if messages|length > 1 %}
             <h2 id="section-{{ domain }}">{{ ('translations_' ~ domain) | trans }}</h2>
+            {% elseif filter %}
+            <h2 id="section-{{ domain }}">{{ ('translations_' ~ filter.name) | trans }}</h2>
+            {% endif %}
 
             <table class="table">
                 <tr>
@@ -27,7 +39,7 @@
                         <th>{{ locale }}</th>
                     {% endfor %}
                 </tr>
-                {% for key,trans in messages[domain] %}
+                {% for key,trans in data %}
                     <tr>
                         <td><code>{{ key }}</code></td>
                         {% for locale in locales %}
@@ -40,9 +52,8 @@
                 {% endfor %}
             </table>
 
+            <button type="submit">Save</button>
         {% endfor %}
-
-        <button type="submit">Save</button>
 
     </form>
 

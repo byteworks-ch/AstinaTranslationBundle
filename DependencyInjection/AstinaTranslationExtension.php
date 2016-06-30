@@ -27,6 +27,7 @@ class AstinaTranslationExtension extends Extension
 
         $container->setParameter('astina_translation.domains', $config['domains']);
         $container->setParameter('astina_translation.locales', $config['locales']);
+        $container->setParameter('astina_translation.filters', $config['filters']);
 
         $container->setParameter('astina_translation.layout_template', $config['admin']['layout_template']);
     }

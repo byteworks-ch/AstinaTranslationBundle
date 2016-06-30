@@ -41,6 +41,10 @@ astina_translation:
     locales: [ de, fr, it, en ]
     admin:
         layout_template: ::translation_layout.html.twig
+    filters:
+        - { name: filter_common, domain: messages, filter: '!weather% AND !wispo% AND !booking%' }
+        - { name: filter_weather, domain: messages, filter: 'weather% OR wispo%' }
+        - { name: filter_booking, domain: messages, filter: 'booking%' }
 ```
 
 Routing configuration (if admin UI is needed):
