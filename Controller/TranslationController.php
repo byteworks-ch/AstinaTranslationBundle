@@ -94,16 +94,11 @@ class TranslationController extends Controller
 
         $messages = array();
 
-        try {
-            $query = $manager->createQuery($queryDql);
+        $query = $manager->createQuery($queryDql);
 
-            /** @var Translation $translation */
-            foreach ($query->getResult() as $translation) {
-                $messages[$translation->getDomain()][$translation->getSource()][$translation->getLocale()] = $translation->getTarget();
-            }
-        }
-        catch (\Exception $e) {
-            echo $queryDql . ':' . $e->getMessage();
+        /** @var Translation $translation */
+        foreach ($query->getResult() as $translation) {
+            $messages[$translation->getDomain()][$translation->getSource()][$translation->getLocale()] = $translation->getTarget();
         }
 
         return $messages;
