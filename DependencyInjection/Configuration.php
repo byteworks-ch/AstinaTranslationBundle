@@ -34,6 +34,15 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('layout_template')->end()
                     ->end()
                 ->end()
+                ->arrayNode('filters')
+                    ->prototype('array')
+                        ->children()
+                            ->scalarNode('name')->end()
+                            ->scalarNode('domain')->end()
+                            ->scalarNode('filter')->end()
+                        ->end()
+                    ->end()
+                ->end()
             ->end()
         ;
 
