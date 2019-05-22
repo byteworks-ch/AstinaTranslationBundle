@@ -5,12 +5,13 @@ services:
 
     astina_translation.loader:
         class: %astina_translation.loader.class%
-        arguments: [ @astina_translation.repository.translation ]
+        arguments: [ "@astina_translation.repository.translation" ]
         tags:
             - { name: translation.loader, alias: db }
 
     astina_translation.repository.translation:
-        class: Doctrine\ORM\EntityRepository
-        factory_service: doctrine
-        factory_method: getRepository
-        arguments: [ AstinaTranslationBundle:Translation ]
+        class: Astina\Bundle\TranslationBundle\Entity\Translation
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - AstinaTranslationBundle:Translation
+
